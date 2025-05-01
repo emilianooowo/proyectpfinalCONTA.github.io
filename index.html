@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Contabilidad y Finanzas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Contabilidad y Finanzas</h1>
+        <h3>Emiliano Leal - 6toM</h3>
+        <nav>
+            <ul>
+                <li><a href="#arqueo">Arqueo de Caja</a></li>
+                <li><a href="#diario">Libro Diario</a></li>
+                <li><a href="#mayor">Libro Mayor</a></li>
+                <li><a href="#balanza">Balanza</a></li>
+                <li><a href="#estado">Estado de Resultados</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Arqueo de Caja con denominaciones -->
+        <section id="arqueo">
+            <h2>Arqueo de Caja (Denominaciones)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Denominación</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>$1000</td>
+                        <td><input type="number" id="bill1000" min="0"></td>
+                        <td><span id="sub1000">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>$500</td>
+                        <td><input type="number" id="bill500" min="0"></td>
+                        <td><span id="sub500">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>$200</td>
+                        <td><input type="number" id="bill200" min="0"></td>
+                        <td><span id="sub200">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>$100</td>
+                        <td><input type="number" id="bill100" min="0"></td>
+                        <td><span id="sub100">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>$50</td>
+                        <td><input type="number" id="coin50" min="0"></td>
+                        <td><span id="sub50">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>$20</td>
+                        <td><input type="number" id="coin20" min="0"></td>
+                        <td><span id="sub20">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>$10</td>
+                        <td><input type="number" id="coin10" min="0"></td>
+                        <td><span id="sub10">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>$5</td>
+                        <td><input type="number" id="coin5" min="0"></td>
+                        <td><span id="sub5">0</span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">Total Caja</th>
+                        <th><span id="totalCaja">0</span></th>
+                    </tr>
+                </tfoot>
+            </table>
+            <button type="button" onclick="calcularDenominaciones()">Calcular Arqueo</button>
+        </section>
+
+        <!-- Libro Diario -->
+        <section id="diario">
+            <h2>Libro Diario</h2>
+            <form id="form-diario">
+                <input type="date" id="fecha">
+                <input type="text" id="cuentaDebe" placeholder="Cuenta Debe">
+                <input type="number" id="montoDebe" placeholder="Monto Debe">
+                <input type="text" id="cuentaHaber" placeholder="Cuenta Haber">
+                <input type="number" id="montoHaber" placeholder="Monto Haber">
+                <button type="button" onclick="agregarDiario()">Agregar</button>
+            </form>
+            <table id="tabla-diario">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Cuenta Debe</th>
+                        <th>Monto</th>
+                        <th>Cuenta Haber</th>
+                        <th>Monto</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <!-- Libro Mayor -->
+        <section id="mayor">
+            <h2>Libro Mayor</h2>
+        </section>
+
+        <!-- Balanza de Comprobación -->
+        <section id="balanza">
+            <h2>Balanza de Comprobación</h2>
+        </section>
+
+        <!-- Estado de Resultados con tabla junto al formulario -->
+        <section id="estado">
+            <h2>Estado de Resultados</h2>
+            <div class="estado-grid">
+                <form id="form-estado">
+                    <label>Ventas Netas: <input type="number" id="ventas"></label><br>
+                    <label>Devoluciones y Descuentos: <input type="number" id="devoluciones"></label><br>
+                    <label>Compras Netas: <input type="number" id="compras"></label><br>
+                    <label>Inventario Inicial: <input type="number" id="invInicial"></label><br>
+                    <label>Inventario Final: <input type="number" id="invFinal"></label><br>
+                    <label>Gastos de Venta: <input type="number" id="gastosVenta"></label><br>
+                    <label>Gastos Administrativos: <input type="number" id="gastosAdmin"></label><br>
+                    <label>Otros Ingresos: <input type="number" id="otrosIngresos"></label><br>
+                    <button type="button" onclick="calcularEstado()">Calcular</button>
+                </form>
+                <table id="table-estado">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ventas Netas</td>
+                            <td><span id="resVentas"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Costo de Ventas</td>
+                            <td><span id="resCosto"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Utilidad Bruta</td>
+                            <td><span id="resBruta"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Gastos Operativos</td>
+                            <td><span id="resGastosOp"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Utilidad Operativa</td>
+                            <td><span id="resOp"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Otros Ingresos</td>
+                            <td><span id="resOtros"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Utilidad Antes de Impuestos</td>
+                            <td><span id="resAntesImp"></span></td>
+                        </tr>
+                        <tr>
+                            <td>ISR (30%)</td>
+                            <td><span id="resISR"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Utilidad Neta</td>
+                            <td><span id="resNeta"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
